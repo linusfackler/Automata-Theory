@@ -253,6 +253,13 @@ DFA dfa_from_string (const std::string &w)
 	std::stringstream sstream(w);
     std::string dfaString;
 
+	if (w.length() % 8 != 0)
+	{
+		std::cout << "Bitstring is not a valid bit-string to represent a DFA."
+			<< std::endl << "Will exit now." << std::endl << std::endl;
+		exit(EXIT_FAILURE);
+	}
+
 	while(sstream.good())
 	{
 		std::bitset<8> bits;
@@ -269,5 +276,7 @@ DFA dfa_from_string (const std::string &w)
 // Given a DFA, does it accept its own encoding?
 bool dfa_accepts_self (const DFA &m)
 {
+	std::string s = dfa_to_string(m);
 
+	return dfa_is_accepted(m, s);
 }

@@ -14,13 +14,15 @@ int main()
     cin >> test;
 
     cout << endl << "Your entered DFA: " << endl << test << endl;
-    cout << "Dfa to string so far: " << endl << endl;
 
     string w = dfa_to_string(test);
     cout << endl << endl << "now string to DFA: " << endl;
-    DFA test2 = dfa_from_string(w);
+    DFA test2 = dfa_from_string("00101010101010101");
 
     cout << endl << test2 << endl;
+
+    cout << "DFA accepts itself: " << endl;
+    cout << dfa_accepts_self(test) << endl;
 
     return 0;
 }
