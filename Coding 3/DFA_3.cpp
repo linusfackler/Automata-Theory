@@ -81,8 +81,9 @@ std::istream & operator >> (std::istream &in, DFA &m) {
 	return in;
 }
 
-
+// -------------------------------
 // Coding 2 functions:
+// -------------------------------
 
 bool reachesFinal(const DFA &m, int currentState, int depth);
 
@@ -223,10 +224,28 @@ bool dfa_is_subset (const DFA &m1, const DFA &m2)
 }
 
 
+// -------------------------------
 // Coding 3 functions:
+// -------------------------------
+
 
 // Given a DFA, convert it to a bit string
 std::string dfa_to_string (const DFA &m)
 {
-	
+	std::string s;
+	s << DFA;
+
+	return s;
+}
+
+// Given a bit string, convert it to a DFA
+DFA dfa_from_string (const std::string &w)
+{
+
+}
+
+// Given a DFA, does it accept its own encoding?
+bool dfa_accepts_self (const DFA &m)
+{
+
 }
