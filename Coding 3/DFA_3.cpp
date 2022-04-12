@@ -222,3 +222,11 @@ bool dfa_is_subset (const DFA &m1, const DFA &m2)
 	// L(m1) is a subset of L(m2)
 }
 
+
+// Coding 3 functions:
+
+// Given a DFA, convert it to a bit string
+std::string dfa_to_string (const DFA &m)
+{
+	
+}
