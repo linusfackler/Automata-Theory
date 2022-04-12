@@ -1,4 +1,8 @@
 #include <algorithm>
+#include <string>
+#include <iostream> 
+#include <sstream>
+#include <bitset>
 
 #include "DFA_3.hpp"
 
@@ -232,10 +236,16 @@ bool dfa_is_subset (const DFA &m1, const DFA &m2)
 // Given a DFA, convert it to a bit string
 std::string dfa_to_string (const DFA &m)
 {
-	std::string s;
-	s << DFA;
+	std::stringstream s;
+	s << m;
+	std::string t = "";
 
-	return s;
+	for (int i = 0; i < s.str().size(); i++)
+	{
+		t += bitset<8>(s.str()[i]);
+	}
+
+	return t;
 }
 
 // Given a bit string, convert it to a DFA
