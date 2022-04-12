@@ -238,20 +238,32 @@ std::string dfa_to_string (const DFA &m)
 {
 	std::stringstream s;
 	s << m;
-	std::string t = "";
+	std::string bitStr = "";
 
 	for (int i = 0; i < s.str().size(); i++)
 	{
-		t += bitset<8>(s.str()[i]);
+		bitStr += std::bitset<8>(s.str()[i]).to_string();
 	}
-
-	return t;
+	return bitStr;
 }
 
 // Given a bit string, convert it to a DFA
 DFA dfa_from_string (const std::string &w)
 {
+	std::stringstream sstream(w);
+    std::string dfaString;
 
+	while(sstream.good())
+	{
+		std::bitset<8> bits;
+        sstream >> bits;
+        char c = char(bits.to_ulong());
+        dfaString += c;
+	}
+
+	DFA m;
+	std::stringstream (dfaString) >> m;
+	return m;
 }
 
 // Given a DFA, does it accept its own encoding?
