@@ -1,3 +1,35 @@
+// Linus Fackler
+// LXF210001
+// CS4384.501 - Automata Theory
+// Dr. Wilson
+//
+// Coding 3 assignment
+//
+// This program has 3 additional functions to our original Coding 2 assignment.
+// These functions make it possible for a DFA to be converted into a single
+// bit string that is completely unique to such DFA. It also allows us to 
+// create a unique DFA out of such bit string.
+// 
+// Function "dfa_to_string" accepts a DFA and prints out its format into a 
+// string stream. That way we get the exact format that we usually use to read
+// in or print out a DFA. An example would be:
+// 4
+// 0 1
+// 1 2
+// 2 3
+// 3 0
+// 0
+// 1 0
+// This is all going to be stored in 1 single string. It then iterates through the
+// entire string and converts each character, such as "4" or " "(space) to an 8 bit
+// string in ascii representation. (where dec 32 is a space for example)
+// It adds each 8 bit string to a final string and then returns this string
+// This final bit string contains a multiple of 8 bits where each 8 bits represent a
+// character in the DFA string, as seen above.
+//
+// Function "dfa_from_string" accepts a bit string and returns a DFA. 
+
+
 #include <algorithm>
 #include <string>
 #include <iostream> 
@@ -227,24 +259,27 @@ bool dfa_is_subset (const DFA &m1, const DFA &m2)
 	// L(m1) is a subset of L(m2)
 }
 
-
-// -------------------------------
+// -------------------------------------------------------------------
+// -------------------------------------------------------------------
 // Coding 3 functions:
-// -------------------------------
-
+// -------------------------------------------------------------------
+// -------------------------------------------------------------------
 
 // Given a DFA, convert it to a bit string
 std::string dfa_to_string (const DFA &m)
 {
 	std::stringstream s;
-	s << m;
-	std::string bitStr = "";
+	s << m;					// print dfa to stringstream, so we have dfa in single
+							// string format the way it is defined in program
+	std::string bitStr = "";	// creating empty string that will be final
 
 	for (int i = 0; i < s.str().size(); i++)
 	{
 		bitStr += std::bitset<8>(s.str()[i]).to_string();
+		// making 8 bit string out of each single character of dfa string
+		// adding it to out final bit string
 	}
-	return bitStr;
+	return bitStr;			// return final bit string
 }
 
 // Given a bit string, convert it to a DFA
@@ -252,25 +287,42 @@ DFA dfa_from_string (const std::string &w)
 {
 	std::stringstream sstream(w);
     std::string dfaString;
+	int len = w.length();
 
-	if (w.length() % 8 != 0)
+	// -- CHECKING TO SEE IF BIT STRING NOT VALID --
+	// checking if the string is not a multiple of 8, making the ascii
+	// conversion impossible
+	// if it is not, exit with error message
+	if (len % 8 != 0)
 	{
 		std::cout << "Bitstring is not a valid bit-string to represent a DFA."
 			<< std::endl << "Will exit now." << std::endl << std::endl;
 		exit(EXIT_FAILURE);
 	}
+	// checking if any of the strings characters is not a 0 or 1
+	// if it is, exit with error message
+	for (int i = 0; i < len; i++)
+	{
+		if (w[i] != '0' && w[i] != '1')
+		{
+			std::cout << "Bitstring is not a valid bit-string to represent a DFA."
+				<< std::endl << "Will exit now." << std::endl << std::endl;
+			exit(EXIT_FAILURE);
+		}
+	}
 
+	// while it hasn't interated through entire stringstream yet
 	while(sstream.good())
 	{
-		std::bitset<8> bits;
+		std::bitset<8> bits;		
         sstream >> bits;
-        char c = char(bits.to_ulong());
-        dfaString += c;
+        char c = char(bits.to_ulong());		// making single character out of 8 bit string
+        dfaString += c;				// adding each ascii character to dfa string
 	}
 
 	DFA m;
-	std::stringstream (dfaString) >> m;
-	return m;
+	std::stringstream (dfaString) >> m;		// creating a dfa from dfa string
+	return m;								// return final dfa
 }
 
 // Given a DFA, does it accept its own encoding?
