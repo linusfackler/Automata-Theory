@@ -1,6 +1,3 @@
-// comments
-
-
 #include "DFA_3.hpp"
 #include <iostream>
 #include <string>

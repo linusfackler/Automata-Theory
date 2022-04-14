@@ -22,12 +22,25 @@
 // 1 0
 // This is all going to be stored in 1 single string. It then iterates through the
 // entire string and converts each character, such as "4" or " "(space) to an 8 bit
-// string in ascii representation. (where dec 32 is a space for example)
+// string in ascii representation. (where dec 32 is a space for example, so 32 in binary)
 // It adds each 8 bit string to a final string and then returns this string
 // This final bit string contains a multiple of 8 bits where each 8 bits represent a
 // character in the DFA string, as seen above.
 //
-// Function "dfa_from_string" accepts a bit string and returns a DFA. 
+// Function "dfa_from_string" accepts a bit string and returns a DFA.
+// First, it checks if the bit string entered is a valid bit string.
+// It does this by checking if the number of bits in the string is a multiple of 8.
+// Then, it checks if each character of the string is a 0 or a 1.
+// If either is false, it exits with an error message.
+// Then, using a stringstream made from the original string, it iterates through
+// the stringstream and converts every 8 bits to a single character in its ascii
+// representation. It adds every character (such as 4 or space) to the dfaString.
+// Once this is done, it creates a DFA from the dfaString, that is in valid format.
+// It then returns this DFA.
+//
+// The function "dfa_accepts_self" uses the "dfa_to_string" function to create a string
+// from the passed in DFA and then returns the outcome of function "dfa_is_accepted", that
+// determines whether the passed in string is accepted in the passed in DFA.
 
 
 #include <algorithm>
@@ -328,7 +341,9 @@ DFA dfa_from_string (const std::string &w)
 // Given a DFA, does it accept its own encoding?
 bool dfa_accepts_self (const DFA &m)
 {
+	// convert referenced DFA to string using our new method
 	std::string s = dfa_to_string(m);
 
+	// checks whether the DFA accepts its own bitstring representation
 	return dfa_is_accepted(m, s);
 }
