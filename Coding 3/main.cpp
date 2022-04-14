@@ -14,6 +14,8 @@ int main()
         cin >> k;
         DFA test3 = dfa_from_string(k);
 
+        cout << test3;
+
         cout << "wanna try again?" << endl;
         cin >> choice;
     }
