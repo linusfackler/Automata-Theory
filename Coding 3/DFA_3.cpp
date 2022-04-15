@@ -324,7 +324,7 @@ DFA dfa_from_string (const std::string &w)
 		}
 	}
 
-	// while it hasn't interated through entire stringstream yet
+	// while it hasn't iterated through entire stringstream yet
 	while(sstream.good())
 	{
 		std::bitset<8> bits;		
