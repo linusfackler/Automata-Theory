@@ -9,12 +9,27 @@ int main()
     char choice = 'y';
     while(choice == 'y')
     {
-        cout << "enter string to check if DFA is valid: " << endl;
+
+        DFA m;
+	    
+        cout << "enter DFA: " << endl;
         string k;
         cin >> k;
-        DFA test3 = dfa_from_string(k);
+        stringstream (k) >> m;
 
-        cout << test3;
+        cout << m << endl;
+
+        string p = dfa_to_string(m);
+        cout << endl << p << endl;
+
+        DFA yourmom = dfa_from_string(p);
+
+        cout << endl << "DFA from string: " << endl;
+        cout << yourmom;
+
+        cout << endl << endl << "does it accept itself?" << endl;
+        cout << dfa_accepts_self(yourmom);
+        cout << endl << endl;
 
         cout << "wanna try again?" << endl;
         cin >> choice;
