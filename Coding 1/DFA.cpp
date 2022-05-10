@@ -1,16 +1,14 @@
-/*
-Linus Fackler
-LXF210001
-CS4384.501 - Automata Theory
-Dr. Willson
-
-This program reads a DFA from an input txt file and asks the user to enter
-a string, which will be tested, if it is accepted by the DFA.
-
-Using the transFunc, it traverses through the DFA until the string ends.
-If it ends in a final state, it is accepted. If not, the entered String
-is not in the language of the DFA.
-*/
+//Linus Fackler
+//LXF210001
+//CS4384.501 - Automata Theory
+//Dr. Willson
+//
+//This program reads a DFA from an input txt file and asks the user to enter
+//a string, which will be tested, if it is accepted by the DFA.
+//
+//Using the transFunc, it traverses through the DFA until the string ends.
+//If it ends in a final state, it is accepted. If not, the entered String
+//is not in the language of the DFA.
 
 #include <algorithm>
 #include "DFA.hpp"
