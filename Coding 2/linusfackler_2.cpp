@@ -9,8 +9,6 @@
 // and infinite. It also tests whether two certain languages are equal and
 // whether one is a subset of the other.
 
-
-
 #include "DFA_2.hpp"
 
 bool reachesFinal(const DFA &m, int currentState, int depth);
