@@ -15,6 +15,7 @@
 #include <fstream>
 
 // added function "dfa_is_accepted"
+// checks whether string w is accepted by DFA m
 bool dfa_is_accepted (const DFA &m, const std::string &w)
 {
 	int size = w.length();
