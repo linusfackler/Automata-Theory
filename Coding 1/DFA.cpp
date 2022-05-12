@@ -14,6 +14,7 @@
 #include "DFA.hpp"
 #include <fstream>
 
+// added function "dfa_is_accepted"
 bool dfa_is_accepted (const DFA &m, const std::string &w)
 {
 	int size = w.length();
