@@ -40,26 +40,18 @@ bool dfa_is_empty (const DFA &m)
 	bool nofinalstates = true;
 
 	for (int i = 0; i < size; i++)
-	{
 		if (m.finalStates[i])
-		{
 			nofinalstates = false;
-		}
-	}
 
 	if (nofinalstates) return true;		// if the DFA has no final states,
 										// L(m) is empty
 
 	else if (reachesFinal(m, m.initialState, 0) || reachesFinal(m, m.initialState, 0))
-	{
 		return false;
-	}
 	// this function tests if any path in the DFA leads to a final state
 
 	else
-	{
 		return true;
-	}
 	// if no final state is reached, L(m) is empty
 }
 
