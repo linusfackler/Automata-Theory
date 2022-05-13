@@ -14,6 +14,7 @@
 bool reachesFinal(const DFA &m, int currentState, int depth);
 
 // Does m accept string w?
+// Same as in coding 1
 bool dfa_is_accepted (const DFA &m, const std::string &w)
 {
 	int size = w.length();
