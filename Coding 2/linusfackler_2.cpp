@@ -63,17 +63,13 @@ bool reachesFinal(const DFA &m, int currentState, int depth)
 	int next1 = m.transFunc(1, currentState);	// transition with next 1
 
 	if (m.finalStates[next0] || m.finalStates[next1])
-	{
 		return true;
-	}
 	// base case: if any of the next states is final, language is not empty
 
 	else
 	{
 		if (depth > 10)
-		{
 			return false;
-		}
 		// after 10 traverses to nodes that are not final states, you
 		// can assume it is looping forever and not reaching a final state
 
