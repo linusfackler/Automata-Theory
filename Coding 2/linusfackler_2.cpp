@@ -103,16 +103,11 @@ bool dfa_is_infinite (const DFA &m)
 		for (int i = 0; i < m.numStates - 1; i++)
 		{
 			for (int j = i; j < m.numStates; j++)
-			{
 				if (i == m.transFunc(0, j) || i == m.transFunc(1, j))
-				{
 					if (reachesFinal(m, i, 0))
 						return true;
 					// just because it loops, doesn't mean it's infinite
 					// needs to be able to reach a final state
-				}
-			}
-
 		}
 	}
 	return false;
