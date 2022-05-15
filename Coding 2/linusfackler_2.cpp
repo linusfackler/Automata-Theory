@@ -74,9 +74,7 @@ bool reachesFinal(const DFA &m, int currentState, int depth)
 		// can assume it is looping forever and not reaching a final state
 
 		else if (reachesFinal(m, next0, ++depth) || reachesFinal(m, next1, ++depth))
-		{
 			return true;
-		}
 		// recursive call
 	}
 }
@@ -86,7 +84,6 @@ bool reachesFinal(const DFA &m, int currentState, int depth)
 bool dfa_is_all (const DFA &m)
 {
 	DFA m2 = dfa_complement(m);
-	
 	return dfa_is_empty(m2);
 	// if the complement of m is empty, L(m) is the set of all strings
 }
